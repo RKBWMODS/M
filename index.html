@@ -1,142 +1,117 @@
-<!DOCTYPE html>
-<html lang="id">
+<!DOCTYPE html><html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Mas Ikii</title>
+  <title>GIP PAUS BANG</title>
   <style>
-    @font-face {
-      font-family: 'ObelixPro';
-      src: url('fonts/ObelixPro-Regular.woff2') format('woff2'),
-           url('fonts/ObelixPro-Regular.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
+    @font-face{font-family:'ObelixPro';src:url('fonts/ObelixPro-Regular.woff2') format('woff2'),url('fonts/ObelixPro-Regular.woff') format('woff');}
+    *{margin:0;padding:0;box-sizing:border-box;}
+    html,body{
+      height:100vh;
+      weight:100vh;
+      font-family:'ObelixPro',sans-serif;
+      overflow:hidden;
+      background:url('https://media-hosting.imagekit.io/7e4ef3bcecf2455d/1000664486.png?Expires=1840569443&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=bJ9ySPlMXRArjDbSa8RLtsncZvSXrwW9obdhE1gTUPsRTcbmcYNDNoGhz9V2ULB-LsCW7CvficIJuslIeaQdVrCwwDXvm8CFVArjICmran0OcL2d6mXQp-SBTkgoRGJlWHGHBHxonk~nMEZRs1vXBZjMu5psp977MKdnYvrjaaB8EaCkTl2wChTdsWV3NsWVfbmYDmGx-qSC9idVv4S54mj-D8VfkEAWHCzWjqrQ24IppcXYjvsT5mG6Oep7xacZEZZ029CIvMOnXJL18TTWsS24fNiE4OUpQpBvhD2yVCCKJO-ZiEvC8QVztWPu18~dLotWVARu68V1iGQzKIEaPg__');
+      background-size:100% 100%;
+      animation:gradientBg 15s ease infinite;
+      perspective:1000px;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    html, body {
-      height:100vh; font-family:'ObelixPro', sans-serif;
-      background:black; overflow:hidden; perspective:1000px;
-    }
-    /* Loding cok */
-    #loader {
-      position:fixed; top:0; left:0; width:100%; height:100%;
-      background:black; display:flex; align-items:center; justify-content:center;
-      z-index:9999; transition:opacity .5s ease;
-    }
-    #loader.hidden { opacity:0; pointer-events:none; }
-    .ball {
-      width:40px; height:40px; background:#fff; border-radius:50%;
-      animation:bounce 1s infinite ease-in-out;
-    }
-    @keyframes bounce {
-      0%,100% { transform: translateY(0); }
-      50% { transform: translateY(-100px); }
-    }
-    .bubbles { position:absolute; width:100%; height:100%; top:0; left:0; overflow:hidden; z-index:1; }
-    .bubbles span {
-      position:absolute; bottom:-150px; background:rgba(255,255,255,0.15); border-radius:50%;
-      animation:rise 8s infinite ease-in-out;
-    }
-    @keyframes rise {
-      0% { transform: translateY(0) scale(0.5); opacity:1; }
-      100% { transform: translateY(-120vh) scale(1); opacity:0; }
-    }
-    .card {
-      position:relative; z-index:3;
-      width:90%; max-width:360px; margin:5% auto 0;
-      padding:20px; border-radius:20px;
-      transform-style:preserve-3d;
-      transition:transform .5s ease, box-shadow .5s ease;
-      text-align:center; visibility:hidden;
-    }
-    .card:hover { box-shadow:0 20px 60px rgba(0,0,0,0.2); }
-    .title {
-      display:inline-block; font-size:clamp(20px,6vw,28px); color:#fff;
-      white-space:nowrap; overflow:hidden; border-right:4px solid rgba(255,255,255,0.8);
-      width:0ch; animation:typing .8s steps(7) forwards, blink .5s step-end infinite alternate;
-      margin:0 auto 1rem;
-    }
-    @keyframes typing { to{width:11ch;} }
-    @keyframes blink { 50%{border-color:transparent;} }
-    .logo {
-      width:35%; max-width:100px; border-radius:10px;
-      margin:0 auto 16px; display:block;
-      filter:drop-shadow(0 0 8px rgba(0,0,0,0.4));
-      animation:logoFade 1s ease forwards .5s; opacity:0;
-    }
-    @keyframes logoFade { to{opacity:1;} }
-    .teks, .qr, .footer {
-      opacity:0; transform:translateY(20px);
-      transition:opacity .8s ease-out, transform .8s ease-out;
-    }
-    .visible { opacity:1; transform:translateY(0); }
-    .teks {
-      width:100%; margin:8px auto; text-align:center;
-      background:none; color:#fff; padding:5px;
-      font-size:clamp(12px,3.5vw,16px); line-height:1.4;
-    }
-    .qr {
-      width:80%; max-width:260px; margin:16px auto;
-      border:4px solid #fff; border-radius:8px;
-      cursor:pointer; filter:drop-shadow(0 0 12px rgba(0,0,0,0.5));
-      animation:float 4s ease-in-out infinite 1.2s;
-    }
-    @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-10px);} }
-    .qr:hover { transform:scale(1.05) rotate(-1deg); }
-    .footer {
-      width:90%; margin:16px auto; text-align:center;
-      color:#fff; font-size:clamp(10px,2.5vw,14px); line-height:1.4;
-    }
+    @keyframes gradientBg{0%{background-position:0% 100%}100%{background-position:100% 50%}100%{background-position:0% 50%}}/* Widget waktu di kiri atas */
+.widget{position:absolute;top:50px;left:15px;background:rgba(60,60,60,0.8);padding:3px 10px;border-radius:10px;display:flex;align-items:center;gap:10px;z-index:10001;}
+.widget #time{font-size:2.5rem;color:#fff;}
+.widget #period{font-size:1.2rem;color:#fff;display:flex;align-items:center;}
+#lockscreen{position:fixed;top:0;left:0;width:100%;height:95%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;z-index:10000;transition:opacity .5s ease;}
+#lockscreen.fade-out{opacity:0;pointer-events:none;}
+.fingerprint{position:relative;width:60px;height:60px;border:4px solid #fff;border-radius:50%;margin-bottom:20px;animation:pulse 1.5s infinite ease-in-out;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 6px rgba(255,255,255,0.6));overflow:hidden;}
+.fingerprint::after{content:'';width:60px;height:60px;background:url('https://media-hosting.imagekit.io/340a33fca23d444d/1000664461.png?Expires=1840566757&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=nrgXEmI82pyRo-3PXYU7BvhvnqYA7vOQH43YG5yFHyd3gUEtUgEgw6m4uU2KmeV6fvT7bcEGh6J65TF0yJOrFyyr678izFGuu27GQZT2wRRxtcmjPuHzDQvenQExMuc27vkoLFnbupsv3GroPTgfqp0tgwBmmRQnr-AnAJZiJnKG~BGpl-WeRsNQJ-NCZ3182kcQGx022UMgTeO3zBorMBnB1~aR5brdgPFms2GTaJOfovxi6FTmPYqwE4ghIXLdtgebj16clel5~GV84Umn2V~zTNrINiXFmkUCmyfYb3g2VMJ~DzOEb-s2FU~LDk5rEimgFKaMWsETfzJv-1WdJw__') no-repeat center/contain;}
+.fingerprint.ripple::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,0.3);animation:ripple 0.6s ease-out;}
+@keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.1);}}
+@keyframes ripple{0%{transform:scale(0.5);opacity:0.7;}100%{transform:scale(3);opacity:0;}}
+.hint{color:#fff;margin-bottom:40px;display:flex;flex-direction:column;align-items:center;font-size:1rem;opacity:0.9;}
+.hint .arrow{font-size:1rem;animation:bounceArrow 1s infinite;}
+.hint .text{margin-top:5px;animation:bounceArrow 1s infinite;}
+@keyframes bounceArrow{0%,100%{transform:translateY(0);}50%{transform:translateY(5px);}}
+#content{opacity:0;pointer-events:none;transition:opacity .8s ease-in;}
+#content.visible{opacity:1;pointer-events:auto;}
+.bubbles{position:absolute;width:100%;height:100%;top:0;left:0;overflow:hidden;z-index:1;}
+.bubbles span{position:absolute;bottom:-150px;background:rgba(255,255,255,0.15);border-radius:50%;animation:rise 8s infinite ease-in-out;}
+@keyframes rise{0%{transform:translateY(0) scale(0.5);opacity:1;}100%{transform:translateY(-120vh) scale(1);opacity:0;}}
+
+.card{position:relative;z-index:3;width:90%;max-width:360px;margin:5% auto;padding:20px;border-radius:20px;transform-style:preserve-3d;transition:transform .5s ease,box-shadow .5s ease;text-align:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);}
+.card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.4);}
+
+.title{font-size:clamp(20px,6vw,28px);color:#fff;border-right:4px solid rgba(255,255,255,0.8);width:0ch;overflow:hidden;animation:typing .8s steps(7) forwards,blink .5s step-end infinite alternate;margin:0 auto 1rem;}
+@keyframes typing{to{width:11ch;}}@keyframes blink{50%{border-color:transparent;}}
+
+.logo{width:50%;max-width:100px;margin:0 auto 16px;display:block;border-radius:10px;opacity:0;animation:logoFade 1s ease forwards .5s;}@keyframes logoFade{to{opacity:1;}}
+
+.teks,.qr,.footer{font-size:13px;color:#fff;opacity:1;transform:none;transition:none;}
+.qr{width:80%;max-width:260px;margin:16px auto;border:4px solid #fff;border-radius:8px;cursor:pointer;filter:drop-shadow(0 0 12px rgba(0,0,0,0.5));animation:float 4s ease-in-out infinite 1.2s;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.qr:hover{transform:scale(1.05) rotate(-1deg);}
+.footer{margin:16px auto;color:#fff;font-size:clamp(10px,2.5vw,14px);line-height:1.4;}
+
   </style>
 </head>
 <body>
-  <div id="loader"><div class="ball"></div></div>
-  <div class="bubbles"></div>
-  <div class="card" id="card">
-    <img class="logo" src="https://i.postimg.cc/gJ0GWZj6/file-00000000997061f796633d3f39e8b84a-conversation-id-67fb6d0a-cec8-8012-b2f5-b26585816bf2-message-i.png" alt="LOGO"/>
-    <h1 class="title">☄`MAS IKII`☂</h1>
-    <div class="teks">Terimakasih Teman Teman Yang Mau Mengtraktir Saya. Seikhlasnya Saja Ya Teman Teman, Ini QR Dana saya.</div>
-    <img class="qr" src="https://i.postimg.cc/9fZLQ846/20250429-202037.jpg" alt="QR DANA"/>
-    <div class="teks">DANA : 081387603153</div>
-    <div class="footer">Terimakasih atas waktunya dan terimakasih sudah mentraktir saya. Semoga rejekinya makin melimpah ya Aminnn...</div>
+  <div id="lockscreen">
+    <div class="widget"><span id="time"></span><span id="period"></span></div>
+    <div class="fingerprint" id="fp"></div>
+    <div class="hint"><div class="arrow">ᐃ</div><div class="text">Tahan untuk membuka</div></div>
   </div>
-
+  <div id="content">
+    <div class="bubbles"></div>
+    <div class="card" id="card">
+      <img class="logo" src="https://i.postimg.cc/gJ0GWZj6/file-00000000997061f796633d3f39e8b84a-conversation-id-67fb6d0a-cec8-8012-b2f5-b26585816bf2-message-i.png" alt="LOGO"/>
+      <h1 class="title">☄`MAS IKII`☂</h1>
+      <div class="teks">Terimakasih Teman Teman Yang Mau Mengtraktir Saya. Seikhlasnya Saja Ya Teman Teman, Ini QR Dana saya.</div>
+      <img class="qr" src="https://i.postimg.cc/9fZLQ846/20250429-202037.jpg" alt="QR DANA"/>
+      <div class="teks">DANA : 081387603153</div>
+      <div class="footer">Terimakasih atas waktunya dan terimakasih sudah mentraktir saya. Semoga rejekinya makin melimpah ya Aminnn...</div>
+    </div>
+  </div>
   <script>
-    // salju
-    const bCont = document.querySelector('.bubbles');
-    for(let i=0;i<30;i++){
-      const b=document.createElement('span');
-      const s=Math.random()*60+20;
-      b.style.width=b.style.height=s+'px';
-      b.style.left=Math.random()*100+'%';
-      b.style.animationDuration=(5+Math.random()*7)+'s';
-      b.style.animationDelay=(Math.random()*5)+'s';
-      bCont.append(b);
-    }
+    const script=document.createElement('script');
+    script.src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js';
+    document.head.appendChild(script);function updateTime(){
+  const now=new Date();
+  let h=now.getHours(),m=now.getMinutes();
+  let periodName, emoji;
+  if(h>=15 && h<18){ periodName='Sore'; emoji='🌄'; }
+  else if(h>=10 && h<15){ periodName='Siang'; emoji='🌞'; }
+  else if(h>=5 && h<10){ periodName='Pagi'; emoji='🌅'; }
+  else { periodName='Malam'; emoji='🌛'; }
+  if(h<10) h='0'+h; if(m<10) m='0'+m;
+  document.getElementById('time').textContent=`${h}:${m}`;
+  document.getElementById('period').textContent=`${emoji} ${periodName}`;
+}
+updateTime(); setInterval(updateTime,60000);
 
-    window.addEventListener('load',()=>{
-      // loding
-      const loader = document.getElementById('loader');
-      loader.classList.add('hidden');
-      setTimeout(()=> loader.remove(), 500);
-      const card = document.getElementById('card');
-      card.style.visibility = 'visible';
-      document.querySelectorAll('.teks, .qr, .footer').forEach((el,i)=>{
-        setTimeout(()=> el.classList.add('visible'), 800 + i*300);
-      });
-    });
+// salju
+const bCont=document.querySelector('.bubbles');
+for(let i=0;i<30;i++){const b=document.createElement('span'),s=Math.random()*60+20;b.style.width=b.style.height=s+'px';b.style.left=Math.random()*100+'%';b.style.animationDuration=(5+Math.random()*7)+'s';b.style.animationDelay=(Math.random()*5)+'s';bCont.append(b);}
 
-    // titit
-    const cardEl = document.getElementById('card');
-    cardEl.addEventListener('mousemove', e => {
-      const r = cardEl.getBoundingClientRect();
-      const x = e.clientX - r.left - r.width/2;
-      const y = e.clientY - r.top - r.height/2;
-      cardEl.style.transform = `rotateX(${-y/20}deg) rotateY(${x/20}deg)`;
-    });
-    cardEl.addEventListener('mouseleave', ()=> {
-      cardEl.style.transform = 'rotateX(0) rotateY(0)';
-    });
+const lock=document.getElementById('lockscreen'),content=document.getElementById('content');
+let timer;
+const fp=document.getElementById('fp');
+fp.addEventListener('mousedown',startPress);fp.addEventListener('touchstart',startPress);
+fp.addEventListener('mouseup',cancelPress);fp.addEventListener('mouseleave',cancelPress);fp.addEventListener('touchend',cancelPress);
+function startPress(e){
+  e.preventDefault(); fp.classList.add('ripple');
+  timer=setTimeout(unlock,1000);
+}
+function cancelPress(){clearTimeout(timer); fp.classList.remove('ripple');}
+function unlock(){
+  if(window.confetti) confetti({ particleCount:100, spread:70, origin:{ y:0.6 }});
+  lock.classList.add('fade-out');
+  setTimeout(()=>{lock.remove();content.classList.add('visible');},500);
+}
+
+
+const cardEl=document.getElementById('card');
+cardEl.addEventListener('mousemove',e=>{const r=cardEl.getBoundingClientRect(),x=e.clientX-r.left-r.width/2,y=e.clientY-r.top-r.height/2;cardEl.style.transform=`rotateX(${-y/20}deg) rotateY(${x/20}deg)`;});
+cardEl.addEventListener('mouseleave',()=>{cardEl.style.transform='rotateX(0) rotateY(0)';});
+
   </script>
 </body>
 </html>
