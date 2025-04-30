@@ -16,12 +16,12 @@
       animation:gradientBg 15s ease infinite;
       perspective:1000px;
     }
-    @keyframes gradientBg{0%{background-position:0% 100%}100%{background-position:100% 50%}100%{background-position:0% 50%}}/* Widget waktu di kiri atas */
-.widget{position:absolute;top:50px;left:15px;background:rgba(60,60,60,0.8);padding:3px 10px;border-radius:10px;display:flex;align-items:center;gap:10px;z-index:10001;}
-.widget #time{font-size:2.5rem;color:#fff;}
-.widget #period{font-size:1.2rem;color:#fff;display:flex;align-items:center;}
-#lockscreen{position:fixed;top:0;left:0;width:100%;height:95%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;z-index:10000;transition:opacity .5s ease;}
-#lockscreen.fade-out{opacity:0;pointer-events:none;}
+    @keyframes gradientBg{0%{background-position:0% 100%}100%{background-position:100% 50%}100%{background-position:0% 50%}}/* widg waktu di kiri atas */
+.widg{position:absolute;top:50px;left:15px;background:rgba(60,60,60,0.8);padding:3px 10px;border-radius:10px;display:flex;align-items:center;gap:10px;z-index:10001;}
+.widg #time{font-size:2.5rem;color:#fff;}
+.widg #period{font-size:1.2rem;color:#fff;display:flex;align-items:center;}
+#lcks{position:fixed;top:0;left:0;width:100%;height:95%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;z-index:10000;transition:opacity .5s ease;}
+#lcks.fade-out{opacity:0;pointer-events:none;}
 .fingerprint{position:relative;width:60px;height:60px;border:4px solid #fff;border-radius:50%;margin-bottom:20px;animation:pulse 1.5s infinite ease-in-out;cursor:pointer;display:flex;align-items:center;justify-content:center;filter:drop-shadow(0 0 6px rgba(255,255,255,0.6));overflow:hidden;}
 .fingerprint::after{content:'';width:60px;height:60px;background:url('https://media-hosting.imagekit.io/340a33fca23d444d/1000664461.png?Expires=1840566757&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=nrgXEmI82pyRo-3PXYU7BvhvnqYA7vOQH43YG5yFHyd3gUEtUgEgw6m4uU2KmeV6fvT7bcEGh6J65TF0yJOrFyyr678izFGuu27GQZT2wRRxtcmjPuHzDQvenQExMuc27vkoLFnbupsv3GroPTgfqp0tgwBmmRQnr-AnAJZiJnKG~BGpl-WeRsNQJ-NCZ3182kcQGx022UMgTeO3zBorMBnB1~aR5brdgPFms2GTaJOfovxi6FTmPYqwE4ghIXLdtgebj16clel5~GV84Umn2V~zTNrINiXFmkUCmyfYb3g2VMJ~DzOEb-s2FU~LDk5rEimgFKaMWsETfzJv-1WdJw__') no-repeat center/contain;}
 .fingerprint.ripple::before{content:'';position:absolute;width:100%;height:100%;border-radius:50%;background:rgba(255,255,255,0.3);animation:ripple 0.6s ease-out;}
@@ -37,7 +37,7 @@
 .bubbles span{position:absolute;bottom:-150px;background:rgba(255,255,255,0.15);border-radius:50%;animation:rise 8s infinite ease-in-out;}
 @keyframes rise{0%{transform:translateY(0) scale(0.5);opacity:1;}100%{transform:translateY(-120vh) scale(1);opacity:0;}}
 
-.card{position:relative;z-index:3;width:90%;max-width:360px;margin:5% auto;padding:20px;border-radius:20px;transform-style:preserve-3d;transition:transform .5s ease,box-shadow .5s ease;text-align:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);}
+.card{position:relative;z-index:3;width:100%;max-width:360px;margin:5% auto;padding:20px;border-radius:20px;transform-style:preserve-3d;transition:transform .5s ease,box-shadow .5s ease;text-align:center;background:rgba(0,0,0,0.4);backdrop-filter:blur(10px);}
 .card:hover{box-shadow:0 20px 60px rgba(0,0,0,0.4);}
 
 .title{font-size:clamp(20px,6vw,28px);color:#fff;border-right:4px solid rgba(255,255,255,0.8);width:0ch;overflow:hidden;animation:typing .8s steps(7) forwards,blink .5s step-end infinite alternate;margin:0 auto 1rem;}
@@ -54,8 +54,8 @@
   </style>
 </head>
 <body>
-  <div id="lockscreen">
-    <div class="widget"><span id="time"></span><span id="period"></span></div>
+  <div id="lcks">
+    <div class="widg"><span id="time"></span><span id="period"></span></div>
     <div class="fingerprint" id="fp"></div>
     <div class="hint"><div class="arrow">ᐃ</div><div class="text">Tahan untuk membuka</div></div>
   </div>
@@ -91,7 +91,7 @@ updateTime(); setInterval(updateTime,60000);
 const bCont=document.querySelector('.bubbles');
 for(let i=0;i<30;i++){const b=document.createElement('span'),s=Math.random()*60+20;b.style.width=b.style.height=s+'px';b.style.left=Math.random()*100+'%';b.style.animationDuration=(5+Math.random()*7)+'s';b.style.animationDelay=(Math.random()*5)+'s';bCont.append(b);}
 
-const lock=document.getElementById('lockscreen'),content=document.getElementById('content');
+const lock=document.getElementById('lcks'),content=document.getElementById('content');
 let timer;
 const fp=document.getElementById('fp');
 fp.addEventListener('mousedown',startPress);fp.addEventListener('touchstart',startPress);
